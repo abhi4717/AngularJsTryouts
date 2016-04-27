@@ -1,0 +1,49 @@
+<html ng-app="Sample">
+<head>
+</head>
+<body ng-controller="actionController">
+	<div>
+		<ul>
+			<li ng-repeat="step in Steps" ng-click="setCurrentStep(step)"><a href="#">{{step.text}}</a></li>
+		</ul>
+	</div>
+	<div>
+		<table>
+			<tr>
+				<th>Action</th>
+				<th>Name</th>
+			</tr>
+			<tr ng-repeat="action in actions | filter:{map:currentStep.id}">
+				<td><a href="#" ng-click="startEditing(action)">Edit</a></td>
+				<td><a href="#" ng-click="deleteAction(action)">Delete</a></td>
+				<td><a href="{{action.value}}">{{action.text}}</a></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<button id="btnNew" ng-if="isCurrentStepSet()" ng-click="startCreating()">New</button>
+	</div>
+	<form ng-show="shouldShowEditing()" ng-submit="saveTask(currentAction)">
+		<div>Edit</div>
+		<div><span>Action Id:</span><span>{{currentAction.id}}</span></div>
+		<div><span>Text:</span><input type="text" value="" ng-model="currentAction.text"/></div>
+		<div><span>Value:</span><input type="text" value="" ng-model="currentAction.value"/></div>
+		<div><span>Map:</span><span>{{currentAction.map}}</span></div>
+		<div><button type="submit">Save</button></div>
+		<div><button type="button" ng-click="cancelEditing()">Cancel</button></div>
+	</form>
+	<form ng-show="shouldShowCreating()" ng-submit="createTask(task)">
+		<div>New</div>
+		<div><label>Text:</label><input type="text" ng-model="task.text"/></div>
+		<div><label>Value:</label><input type="text" ng-model="task.value"/></div>
+		<div><label>Map:</label><span>{{currentStep.id}}</span></div>
+		<div><button type="submit">Save</button></div>
+		<div><button type="button" ng-click="cancelCreating()">Cancel</button></div>
+	</form>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="http://underscorejs.org/underscore-min.js"></script>
+	<script src="script/actions/main.js"></script>
+</body>
+</html>

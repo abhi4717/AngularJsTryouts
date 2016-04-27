@@ -1,0 +1,7 @@
+actions = [
+		{"id":"1","value":"http://www.google.co.in","map":"1","text":"Google"},
+		{"id":"2","value":"http://www.yahoo.co.in","map":"2","text":"Yahoo"},
+		{"id":"3","value":"http://www.rediffmail.com","map":"3","text":"Rediffmail"},
+		{"id":"4","value":"http://www.hotmail.com","map":"4","text":"Hotmail"},
+		{"id":"5","value":"http://www.linkedin.com","map":"4","text":"LinkedIn"}
+];
